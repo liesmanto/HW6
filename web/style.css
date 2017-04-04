@@ -12,12 +12,10 @@ body {
         background-color: tan;
 }
 
-
 table {
      border-collapse: collapse;
      padding: 15px;
      border: 10px solid white;
-     margin-left: 0px;
 }
 
 th, td {
@@ -45,7 +43,7 @@ tr:nth-child(odd) {
     background-color: coral;
 }
 
-tr:hover {
+#read tr:hover {
     background-color: #f5f5f5;
 }
 
@@ -59,4 +57,22 @@ a {
 
 a:hover {
     color: black
+}
+
+.right {
+    text-align: right;
+}
+
+.add td {
+    border: none;
+    height:25px;
+    padding:10px;
+    font-weight: bold;
+}
+
+.update td {
+    border: none;
+    height:25px;
+    padding:10px;
+    font-weight: bold;
 }

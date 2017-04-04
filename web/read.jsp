@@ -10,12 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Germany Football Team</title>
-        <link rel="stylesheet" type="text/css" href="style2.css"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     
     <% String table = (String) request.getAttribute("table"); %>
     
-    <body>
+    <body id="read">
         <h1><u>Germany Football Team Current Squad</u></h1>
         <%= table %>
         <br>
