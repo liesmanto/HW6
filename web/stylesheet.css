@@ -9,7 +9,11 @@ and open the template in the editor.
 */
 
 body {
-        background-color: tan;
+    background-color: tan;
+}
+
+input[readonly] {
+    background-color: gray;
 }
 
 table {
@@ -45,6 +49,7 @@ tr:nth-child(odd) {
 
 #read tr:hover {
     background-color: #f5f5f5;
+    color: black;
 }
 
 a {

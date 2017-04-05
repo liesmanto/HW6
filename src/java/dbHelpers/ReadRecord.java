@@ -17,10 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.GermanyFootballTeam;
 
-/**
- *
- * @author Natasha Lie
- */
 public class ReadRecord {
     
     private Connection conn;
@@ -63,11 +59,11 @@ public class ReadRecord {
     public void doRead() {
         try {
             //set up  a string to hold our query
-            String query = "Select * from GermanyFootballTeam WHERE playerID = ?";
+            String query = "SELECT * FROM germanyfootballteam WHERE playerID = ?";
             //create a prepared statement using our query string
             PreparedStatement ps = conn.prepareStatement(query);
             //fill in the prepared statement
-            ps.setInt(1,playerID);
+            ps.setInt(1, playerID);
             //execute the query
             this.results = ps.executeQuery();
             

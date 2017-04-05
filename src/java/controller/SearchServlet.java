@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dbHelpers.ReadRecord;
+import dbHelpers.SearchQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -14,14 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.GermanyFootballTeam;
 
 /**
  *
  * @author Natasha Lie
  */
-@WebServlet(name = "UpdateFormServlet", urlPatterns = {"/update"})
-public class UpdateFormServlet extends HttpServlet {
+@WebServlet(name = "SearchServlet", urlPatterns = {"/search"})
+public class SearchServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class UpdateFormServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateFormServlet</title>");            
+            out.println("<title>Servlet SearchServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateFormServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SearchServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +60,6 @@ public class UpdateFormServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            //pass execution to doPost
             doPost(request, response);
     }
 
@@ -76,18 +74,16 @@ public class UpdateFormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-            //get the playerID
-            int playerID = Integer.parseInt(request.getParameter("playerID"));
-            //create a ReadRecord class
-            ReadRecord rr = new ReadRecord(playerID);
-            //use ReadRecord to get the players data
-            rr.doRead();
-            GermanyFootballTeam germanyfootballteam = rr.getGermanyFootballTeam();
-            //pass players and control to updateForm.jsp
-            request.setAttribute("germanyfootballteam", germanyfootballteam);
-            
-            String url = "/updateForm.jsp";
+            //get the text to search
+            String playerName = request.getParameter("searchVal");
+            //create a SearchQuery helper object
+            SearchQuery sq = new SearchQuery();
+            //get the HTML table from the SearchQuery object
+            sq.doSearch(playerName);
+            String table = sq.getHTMLTable();
+            //pass execution control to read.jsp along with the table
+            request.setAttribute("table", table);
+            String url = "/read.jsp";
             
             RequestDispatcher dispatcher = request.getRequestDispatcher(url);
             dispatcher.forward(request, response);

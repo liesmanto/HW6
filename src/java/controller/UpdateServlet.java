@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dbHelpers.ReadRecord;
+import dbHelpers.UpdateQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +20,8 @@ import model.GermanyFootballTeam;
  *
  * @author Natasha Lie
  */
-@WebServlet(name = "UpdateFormServlet", urlPatterns = {"/update"})
-public class UpdateFormServlet extends HttpServlet {
+@WebServlet(name = "UpdateServlet", urlPatterns = {"/updatePlayer"})
+public class UpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class UpdateFormServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateFormServlet</title>");            
+            out.println("<title>Servlet UpdateServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateFormServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +61,6 @@ public class UpdateFormServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            //pass execution to doPost
             doPost(request, response);
     }
 
@@ -76,18 +75,32 @@ public class UpdateFormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-            //get the playerID
+            //get the form data and set up Player object
             int playerID = Integer.parseInt(request.getParameter("playerID"));
-            //create a ReadRecord class
-            ReadRecord rr = new ReadRecord(playerID);
-            //use ReadRecord to get the players data
-            rr.doRead();
-            GermanyFootballTeam germanyfootballteam = rr.getGermanyFootballTeam();
-            //pass players and control to updateForm.jsp
-            request.setAttribute("germanyfootballteam", germanyfootballteam);
+            int playerJerseyNumber = Integer.parseInt(request.getParameter("playerJerseyNumber"));
+            String playerName = request.getParameter("playerName");
+            int playerAge = Integer.parseInt(request.getParameter("playerAge"));
+            String playerPOB = request.getParameter("playerPOB");
+            String playerPosition = request.getParameter("playerPosition");
+            int playerCaps = Integer.parseInt(request.getParameter("playerCaps"));
+            int playerGoals = Integer.parseInt(request.getParameter("playerGoals"));
+            String playerDomesticClub = request.getParameter("playerDomesticClub");
             
-            String url = "/updateForm.jsp";
+            GermanyFootballTeam germanyfootballteam = new GermanyFootballTeam();
+            germanyfootballteam.setPlayerID(playerID);
+            germanyfootballteam.setPlayerJerseyNumber(playerJerseyNumber);
+            germanyfootballteam.setPlayerName(playerName);
+            germanyfootballteam.setPlayerAge(playerAge);
+            germanyfootballteam.setPlayerPOB(playerPOB);
+            germanyfootballteam.setPlayerPosition(playerPosition);
+            germanyfootballteam.setPlayerCaps(playerCaps);
+            germanyfootballteam.setPlayerGoals(playerGoals);
+            germanyfootballteam.setPlayerDomesticClub(playerDomesticClub);
+            //create an UpdateQuery object and use it to update the players
+            UpdateQuery uq = new UpdateQuery();
+            uq.doUpdate(germanyfootballteam);
+            //pass control to the ReadServlet
+            String url = "/read";
             
             RequestDispatcher dispatcher = request.getRequestDispatcher(url);
             dispatcher.forward(request, response);
