@@ -57,7 +57,7 @@ public class ReadQuery {
     
     public void doRead() {
         try {
-            String query = "Select * from GermanyFootballTeam";
+            String query = "Select * FROM GermanyFootballTeam ORDER BY playerID ASC";
             PreparedStatement ps = conn.prepareStatement(query);
             this.results = ps.executeQuery();
         } catch (SQLException ex) {

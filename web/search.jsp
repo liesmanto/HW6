@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>Search Player</h1>
-        <form name="searchForm" action="search" method="get"></form>
+        <form name="searchForm" action="search" method="get">
             <input type="text" name="searchVal" value=""/>
             <br>
             <input type="submit" name="submit" value="Search"/>

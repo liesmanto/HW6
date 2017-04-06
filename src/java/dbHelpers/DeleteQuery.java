@@ -56,7 +56,7 @@ public class DeleteQuery {
         
         try {
             //set up a string to hold our query
-            String query = "Delete FROM germanyfootballteam WHERE playerID = ?";
+            String query = "Delete FROM GermanyFootballTeam WHERE playerID = ?";
             
             //create a preparedstatement using our query string
             PreparedStatement ps = conn.prepareStatement(query);

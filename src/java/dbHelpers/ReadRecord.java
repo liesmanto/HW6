@@ -59,7 +59,7 @@ public class ReadRecord {
     public void doRead() {
         try {
             //set up  a string to hold our query
-            String query = "SELECT * FROM germanyfootballteam WHERE playerID = ?";
+            String query = "SELECT * FROM GermanyFootballTeam WHERE playerID = ?";
             //create a prepared statement using our query string
             PreparedStatement ps = conn.prepareStatement(query);
             //fill in the prepared statement

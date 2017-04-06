@@ -48,10 +48,10 @@ public class SearchQuery {
     
     public void doSearch(String playerName) {
         try {
-            String query = "SELECT * FROM germanyfootballteam WHERE playerName LIKE ?";
+            String query = "SELECT * FROM GermanyFootballTeam WHERE UPPER(playerName) LIKE ? ORDER BY playerID ASC";
             
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, "%" + playerName + "%");
+            ps.setString(1, "%" + playerName.toUpperCase() + "%");
             this.results = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(SearchQuery.class.getName()).log(Level.SEVERE, null, ex);

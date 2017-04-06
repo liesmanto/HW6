@@ -53,7 +53,7 @@ public class UpdateQuery {
     
     public void doUpdate(GermanyFootballTeam germanyfootballteam) {
         try {
-            String query = "UPDATE germanyfootballteam SET playerJerseyNumber = ?, playerName = ?, playerAge = ?, playerPOB = ?, playerPosition = ?, playerCaps = ?, playerGoals = ?, playerDomesticClub = ? WHERE playerID = ?";
+            String query = "UPDATE GermanyFootballTeam SET playerJerseyNumber = ?, playerName = ?, playerAge = ?, playerPOB = ?, playerPosition = ?, playerCaps = ?, playerGoals = ?, playerDomesticClub = ? WHERE playerID = ?";
             PreparedStatement ps = conn.prepareStatement(query);
             
             ps.setInt(1, germanyfootballteam.getPlayerJerseyNumber());
