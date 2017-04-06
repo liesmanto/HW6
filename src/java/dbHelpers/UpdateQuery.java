@@ -64,6 +64,7 @@ public class UpdateQuery {
             ps.setInt(6, germanyfootballteam.getPlayerCaps());
             ps.setInt(7, germanyfootballteam.getPlayerGoals());
             ps.setString(8, germanyfootballteam.getPlayerDomesticClub());
+            ps.setInt(9, germanyfootballteam.getPlayerID());
             
             ps.executeUpdate();
         } catch (SQLException ex) {
