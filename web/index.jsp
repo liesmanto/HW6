@@ -13,9 +13,25 @@
         <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
     </head>
     <body>
-        <h1><u>Germany Football Team</u></h1>
-        <a href="read">View Current Squad Database</a>
-        <br>
-        <a href="search.jsp">Search Player</a>
+        <div class="wrap"> <!-- div to hold all other divs -->
+            <!--Header-->
+            <%@include file="includes/header.jsp" %>
+            
+            <!--Navigation-->
+            <%@include file="includes/nav.jsp" %>
+            
+            <!--Main-->
+            <div class="main">
+
+                <h1>Germany Football Team</h1>
+                <a href="read">View Current Squad Database</a>
+                <br>
+                <a href="search.jsp">Search Player</a>
+            
+            </div>
+
+            <!--Footer-->
+            <%@include file="includes/footer.jsp" %>
+        </div> <!-- close the wrap div -->
     </body>
 </html>

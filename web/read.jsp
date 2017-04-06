@@ -16,11 +16,21 @@
     <% String table = (String) request.getAttribute("table"); %>
     
     <body id="read">
-        <h1><u>Germany Football Team Current Squad</u></h1>
-        <%= table %>
-        <br>
-        <a href="add">Add A Player</a>
-        <br>
-        <a href="search.jsp">Search Player</a>
+    <div class="wrap"> <!-- div to hold all other divs -->
+            <!--Header-->
+            <%@include file="includes/header.jsp" %>
+            
+            <!--Navigation-->
+            <%@include file="includes/nav.jsp" %>
+            
+            <!--Main-->
+            <div class="main">
+                <h1>Germany Football Team Current Squad</h1>
+                <%= table %>
+            </div>
+
+            <!--Footer-->
+            <%@include file="includes/footer.jsp" %>
+        </div> <!-- close the wrap div -->
     </body>
 </html>
